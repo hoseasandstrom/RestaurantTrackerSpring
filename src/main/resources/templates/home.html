@@ -2,11 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Restaruant Tracker</title>
+    <title>Restaurant Tracker</title>
 </head>
 <body>
 <form action="/logout" method="post">
     <button type="submit">Logout</button>
+</form>
+
+<form action="/" method="get">
+    <input type="text" name="search" placeholder="Search"/>
+    <button type="submit">Search by Location</button>
 </form>
 <br>
 <form action="/create-restaurant" method="post">
