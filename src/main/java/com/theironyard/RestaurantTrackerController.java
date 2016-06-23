@@ -24,12 +24,12 @@ public class RestaurantTrackerController {
     RestaurantRepository restaurants;
 
     @PostConstruct
-    public void init() {
+    public void init() throws PasswordStorage.CannotPerformOperationException {
         if (users.count() == 0) {
-            User users = new User("Hosea", "pass");
+            User users = new User("Hosea", PasswordStorage.createHash("pass"));
             users.save(users);
         }
-    }
+   }
 
     @RequestMapping(path = "/", method= RequestMethod.GET)
     public String home(HttpSession session, Model model, Integer rating, String location, String search) {
@@ -64,9 +64,9 @@ public class RestaurantTrackerController {
     public String login(String username, String password, HttpSession session) throws Exception {
         User user = users.findByName(username); //looks into table
         if (user == null) {
-            user = new User(username, password);
+            user = new User(username, PasswordStorage.createHash(password));
             users.save(user); //adds user if not in table
-        } else if (!user.password.equals(password)) {
+        } else if (!PasswordStorage.verifyPassword(password, user.password)) {
             throw new Exception("Invalid password!");
         }
 
