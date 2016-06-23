@@ -26,8 +26,8 @@ public class RestaurantTrackerController {
     @PostConstruct
     public void init() throws PasswordStorage.CannotPerformOperationException {
         if (users.count() == 0) {
-            User users = new User("Hosea", PasswordStorage.createHash("pass"));
-            users.save(users);
+            User user = new User("Hosea", PasswordStorage.createHash("pass"));
+            users.save(user);
         }
    }
 
