@@ -33,6 +33,10 @@
 <ol>
     {{#restaurants}}
     <li><b>{{name}}</b> - {{location}} - {{rating}}/5 - {{comment}}
+        <form action="/edit-restaurant" method="post" style="display: inline block">
+            <input type="hidden" name="id" value="{{id}}"/>
+            <button type="submit">Edit Entry</button>
+        </form>
         <form action="/delete-restaurant" method="post" style="display: inline block">
             <input type="hidden" name="id" value="{{id}}"/>
             <button type="submit">Delete Restaurant</button>

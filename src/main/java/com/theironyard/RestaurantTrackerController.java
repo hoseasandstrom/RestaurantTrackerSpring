@@ -87,14 +87,14 @@ public class RestaurantTrackerController {
         return "redirect:/";
 
     }
-    //@RequestMapping(path = "/edit-restaurant", method = RequestMethod.PUT)
-    //public String edit(String name, String location, int rating, String comment ){
-        //int Id = Integer.valueOf("{id}");
-       //Restaurant r = new Restaurant(name, location, rating, comment);
-        //restaurants.save(r);
-       // return "/";
+    @RequestMapping(path = "/edit-restaurant", method = RequestMethod.POST)
+    public String edit(int id, String name, String location, Integer rating, String comment ){
+        Restaurant restaurant = restaurants.findOne(id);
+        Restaurant e = new Restaurant(name, location, rating, comment);
+        restaurants.save(e);
+       return "/";
 
-    //}
+    }
 
     @RequestMapping(path = "/delete-restaurant", method = RequestMethod.POST)
     public String delete(int id) {
